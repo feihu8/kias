@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kias.dao.UserinfoMapper">
+  <resultMap id="BaseResultMap" type="com.kias.model.Userinfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
+    <result column="preLoginName" jdbcType="VARCHAR" property="preloginname" />
+    <result column="realName" jdbcType="VARCHAR" property="realname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="cardNo" jdbcType="VARCHAR" property="cardno" />
+    <result column="nativePlace" jdbcType="VARCHAR" property="nativeplace" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="maritalStatus" jdbcType="VARCHAR" property="maritalstatus" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="weChat" jdbcType="VARCHAR" property="wechat" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="emergentContact" jdbcType="VARCHAR" property="emergentcontact" />
+    <result column="emergentTelephone" jdbcType="VARCHAR" property="emergenttelephone" />
+    <result column="politicalAffiliatio" jdbcType="VARCHAR" property="politicalaffiliatio" />
+    <result column="firstEducationCode" jdbcType="VARCHAR" property="firsteducationcode" />
+    <result column="firstGraduate" jdbcType="VARCHAR" property="firstgraduate" />
+    <result column="secondEducationCode" jdbcType="VARCHAR" property="secondeducationcode" />
+    <result column="secondGraduate" jdbcType="VARCHAR" property="secondgraduate" />
+    <result column="topEducationCode" jdbcType="VARCHAR" property="topeducationcode" />
+    <result column="topGraduate" jdbcType="VARCHAR" property="topgraduate" />
+    <result column="readEducationCode" jdbcType="VARCHAR" property="readeducationcode" />
+    <result column="readGraduate" jdbcType="VARCHAR" property="readgraduate" />
+    <result column="finalEducationCode" jdbcType="VARCHAR" property="finaleducationcode" />
+    <result column="finalGraduateDate" jdbcType="DATE" property="finalgraduatedate" />
+    <result column="degree" jdbcType="VARCHAR" property="degree" />
+    <result column="foreignLanguage" jdbcType="VARCHAR" property="foreignlanguage" />
+    <result column="joinWorkDate" jdbcType="DATE" property="joinworkdate" />
+    <result column="enrollDate" jdbcType="DATE" property="enrolldate" />
+    <result column="entryDate" jdbcType="DATE" property="entrydate" />
+    <result column="regularDate" jdbcType="DATE" property="regulardate" />
+    <result column="fileNum" jdbcType="INTEGER" property="filenum" />
+    <result column="personnelNature" jdbcType="VARCHAR" property="personnelnature" />
+    <result column="workType" jdbcType="VARCHAR" property="worktype" />
+    <result column="identityType" jdbcType="VARCHAR" property="identitytype" />
+    <result column="jobType" jdbcType="VARCHAR" property="jobtype" />
+    <result column="hospitalCode" jdbcType="VARCHAR" property="hospitalcode" />
+    <result column="departCode" jdbcType="VARCHAR" property="departcode" />
+    <result column="loginCodes" jdbcType="VARCHAR" property="logincodes" />
+    <result column="positionCode" jdbcType="VARCHAR" property="positioncode" />
+    <result column="positionDate" jdbcType="DATE" property="positiondate" />
+    <result column="proTitleCode" jdbcType="VARCHAR" property="protitlecode" />
+    <result column="proTitleDate" jdbcType="DATE" property="protitledate" />
+    <result column="workState" jdbcType="VARCHAR" property="workstate" />
+    <result column="experience" jdbcType="VARCHAR" property="experience" />
+    <result column="nurseTier" jdbcType="VARCHAR" property="nursetier" />
+    <result column="nurseCertificate" jdbcType="VARCHAR" property="nursecertificate" />
+    <result column="nurseAgeSubsidyShould" jdbcType="DECIMAL" property="nurseagesubsidyshould" />
+    <result column="nurseAgeSubsidyReal" jdbcType="DECIMAL" property="nurseagesubsidyreal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loginName, preLoginName, realName, sex, nation, birthday, cardNo, nativePlace, 
+    photo, maritalStatus, status, createTime, telephone, weChat, email, address, postcode, 
+    emergentContact, emergentTelephone, politicalAffiliatio, firstEducationCode, firstGraduate, 
+    secondEducationCode, secondGraduate, topEducationCode, topGraduate, readEducationCode, 
+    readGraduate, finalEducationCode, finalGraduateDate, degree, foreignLanguage, joinWorkDate, 
+    enrollDate, entryDate, regularDate, fileNum, personnelNature, workType, identityType, 
+    jobType, hospitalCode, departCode, loginCodes, positionCode, positionDate, proTitleCode, 
+    proTitleDate, workState, experience, nurseTier, nurseCertificate, nurseAgeSubsidyShould, 
+    nurseAgeSubsidyReal
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kias.model.Userinfo">
+    insert into userinfo (id, loginName, preLoginName, 
+      realName, sex, nation, 
+      birthday, cardNo, nativePlace, 
+      photo, maritalStatus, status, 
+      createTime, telephone, weChat, 
+      email, address, postcode, 
+      emergentContact, emergentTelephone, politicalAffiliatio, 
+      firstEducationCode, firstGraduate, secondEducationCode, 
+      secondGraduate, topEducationCode, topGraduate, 
+      readEducationCode, readGraduate, finalEducationCode, 
+      finalGraduateDate, degree, foreignLanguage, 
+      joinWorkDate, enrollDate, entryDate, 
+      regularDate, fileNum, personnelNature, 
+      workType, identityType, jobType, 
+      hospitalCode, departCode, loginCodes, 
+      positionCode, positionDate, proTitleCode, 
+      proTitleDate, workState, experience, 
+      nurseTier, nurseCertificate, nurseAgeSubsidyShould, 
+      nurseAgeSubsidyReal)
+    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{preloginname,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{cardno,jdbcType=VARCHAR}, #{nativeplace,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{telephone,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+      #{emergentcontact,jdbcType=VARCHAR}, #{emergenttelephone,jdbcType=VARCHAR}, #{politicalaffiliatio,jdbcType=VARCHAR}, 
+      #{firsteducationcode,jdbcType=VARCHAR}, #{firstgraduate,jdbcType=VARCHAR}, #{secondeducationcode,jdbcType=VARCHAR}, 
+      #{secondgraduate,jdbcType=VARCHAR}, #{topeducationcode,jdbcType=VARCHAR}, #{topgraduate,jdbcType=VARCHAR}, 
+      #{readeducationcode,jdbcType=VARCHAR}, #{readgraduate,jdbcType=VARCHAR}, #{finaleducationcode,jdbcType=VARCHAR}, 
+      #{finalgraduatedate,jdbcType=DATE}, #{degree,jdbcType=VARCHAR}, #{foreignlanguage,jdbcType=VARCHAR}, 
+      #{joinworkdate,jdbcType=DATE}, #{enrolldate,jdbcType=DATE}, #{entrydate,jdbcType=DATE}, 
+      #{regulardate,jdbcType=DATE}, #{filenum,jdbcType=INTEGER}, #{personnelnature,jdbcType=VARCHAR}, 
+      #{worktype,jdbcType=VARCHAR}, #{identitytype,jdbcType=VARCHAR}, #{jobtype,jdbcType=VARCHAR}, 
+      #{hospitalcode,jdbcType=VARCHAR}, #{departcode,jdbcType=VARCHAR}, #{logincodes,jdbcType=VARCHAR}, 
+      #{positioncode,jdbcType=VARCHAR}, #{positiondate,jdbcType=DATE}, #{protitlecode,jdbcType=VARCHAR}, 
+      #{protitledate,jdbcType=DATE}, #{workstate,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, 
+      #{nursetier,jdbcType=VARCHAR}, #{nursecertificate,jdbcType=VARCHAR}, #{nurseagesubsidyshould,jdbcType=DECIMAL}, 
+      #{nurseagesubsidyreal,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kias.model.Userinfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginname != null">
+        loginName,
+      </if>
+      <if test="preloginname != null">
+        preLoginName,
+      </if>
+      <if test="realname != null">
+        realName,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="cardno != null">
+        cardNo,
+      </if>
+      <if test="nativeplace != null">
+        nativePlace,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="maritalstatus != null">
+        maritalStatus,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="wechat != null">
+        weChat,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+      <if test="emergentcontact != null">
+        emergentContact,
+      </if>
+      <if test="emergenttelephone != null">
+        emergentTelephone,
+      </if>
+      <if test="politicalaffiliatio != null">
+        politicalAffiliatio,
+      </if>
+      <if test="firsteducationcode != null">
+        firstEducationCode,
+      </if>
+      <if test="firstgraduate != null">
+        firstGraduate,
+      </if>
+      <if test="secondeducationcode != null">
+        secondEducationCode,
+      </if>
+      <if test="secondgraduate != null">
+        secondGraduate,
+      </if>
+      <if test="topeducationcode != null">
+        topEducationCode,
+      </if>
+      <if test="topgraduate != null">
+        topGraduate,
+      </if>
+      <if test="readeducationcode != null">
+        readEducationCode,
+      </if>
+      <if test="readgraduate != null">
+        readGraduate,
+      </if>
+      <if test="finaleducationcode != null">
+        finalEducationCode,
+      </if>
+      <if test="finalgraduatedate != null">
+        finalGraduateDate,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="foreignlanguage != null">
+        foreignLanguage,
+      </if>
+      <if test="joinworkdate != null">
+        joinWorkDate,
+      </if>
+      <if test="enrolldate != null">
+        enrollDate,
+      </if>
+      <if test="entrydate != null">
+        entryDate,
+      </if>
+      <if test="regulardate != null">
+        regularDate,
+      </if>
+      <if test="filenum != null">
+        fileNum,
+      </if>
+      <if test="personnelnature != null">
+        personnelNature,
+      </if>
+      <if test="worktype != null">
+        workType,
+      </if>
+      <if test="identitytype != null">
+        identityType,
+      </if>
+      <if test="jobtype != null">
+        jobType,
+      </if>
+      <if test="hospitalcode != null">
+        hospitalCode,
+      </if>
+      <if test="departcode != null">
+        departCode,
+      </if>
+      <if test="logincodes != null">
+        loginCodes,
+      </if>
+      <if test="positioncode != null">
+        positionCode,
+      </if>
+      <if test="positiondate != null">
+        positionDate,
+      </if>
+      <if test="protitlecode != null">
+        proTitleCode,
+      </if>
+      <if test="protitledate != null">
+        proTitleDate,
+      </if>
+      <if test="workstate != null">
+        workState,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="nursetier != null">
+        nurseTier,
+      </if>
+      <if test="nursecertificate != null">
+        nurseCertificate,
+      </if>
+      <if test="nurseagesubsidyshould != null">
+        nurseAgeSubsidyShould,
+      </if>
+      <if test="nurseagesubsidyreal != null">
+        nurseAgeSubsidyReal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="preloginname != null">
+        #{preloginname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null">
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null">
+        #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="emergentcontact != null">
+        #{emergentcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergenttelephone != null">
+        #{emergenttelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalaffiliatio != null">
+        #{politicalaffiliatio,jdbcType=VARCHAR},
+      </if>
+      <if test="firsteducationcode != null">
+        #{firsteducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstgraduate != null">
+        #{firstgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="secondeducationcode != null">
+        #{secondeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="secondgraduate != null">
+        #{secondgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="topeducationcode != null">
+        #{topeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="topgraduate != null">
+        #{topgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="readeducationcode != null">
+        #{readeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="readgraduate != null">
+        #{readgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="finaleducationcode != null">
+        #{finaleducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="finalgraduatedate != null">
+        #{finalgraduatedate,jdbcType=DATE},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignlanguage != null">
+        #{foreignlanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="joinworkdate != null">
+        #{joinworkdate,jdbcType=DATE},
+      </if>
+      <if test="enrolldate != null">
+        #{enrolldate,jdbcType=DATE},
+      </if>
+      <if test="entrydate != null">
+        #{entrydate,jdbcType=DATE},
+      </if>
+      <if test="regulardate != null">
+        #{regulardate,jdbcType=DATE},
+      </if>
+      <if test="filenum != null">
+        #{filenum,jdbcType=INTEGER},
+      </if>
+      <if test="personnelnature != null">
+        #{personnelnature,jdbcType=VARCHAR},
+      </if>
+      <if test="worktype != null">
+        #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="identitytype != null">
+        #{identitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null">
+        #{jobtype,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalcode != null">
+        #{hospitalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="departcode != null">
+        #{departcode,jdbcType=VARCHAR},
+      </if>
+      <if test="logincodes != null">
+        #{logincodes,jdbcType=VARCHAR},
+      </if>
+      <if test="positioncode != null">
+        #{positioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="positiondate != null">
+        #{positiondate,jdbcType=DATE},
+      </if>
+      <if test="protitlecode != null">
+        #{protitlecode,jdbcType=VARCHAR},
+      </if>
+      <if test="protitledate != null">
+        #{protitledate,jdbcType=DATE},
+      </if>
+      <if test="workstate != null">
+        #{workstate,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="nursetier != null">
+        #{nursetier,jdbcType=VARCHAR},
+      </if>
+      <if test="nursecertificate != null">
+        #{nursecertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseagesubsidyshould != null">
+        #{nurseagesubsidyshould,jdbcType=DECIMAL},
+      </if>
+      <if test="nurseagesubsidyreal != null">
+        #{nurseagesubsidyreal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kias.model.Userinfo">
+    update userinfo
+    <set>
+      <if test="loginname != null">
+        loginName = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="preloginname != null">
+        preLoginName = #{preloginname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="cardno != null">
+        cardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null">
+        nativePlace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalstatus != null">
+        maritalStatus = #{maritalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        weChat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="emergentcontact != null">
+        emergentContact = #{emergentcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="emergenttelephone != null">
+        emergentTelephone = #{emergenttelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalaffiliatio != null">
+        politicalAffiliatio = #{politicalaffiliatio,jdbcType=VARCHAR},
+      </if>
+      <if test="firsteducationcode != null">
+        firstEducationCode = #{firsteducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstgraduate != null">
+        firstGraduate = #{firstgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="secondeducationcode != null">
+        secondEducationCode = #{secondeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="secondgraduate != null">
+        secondGraduate = #{secondgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="topeducationcode != null">
+        topEducationCode = #{topeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="topgraduate != null">
+        topGraduate = #{topgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="readeducationcode != null">
+        readEducationCode = #{readeducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="readgraduate != null">
+        readGraduate = #{readgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="finaleducationcode != null">
+        finalEducationCode = #{finaleducationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="finalgraduatedate != null">
+        finalGraduateDate = #{finalgraduatedate,jdbcType=DATE},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignlanguage != null">
+        foreignLanguage = #{foreignlanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="joinworkdate != null">
+        joinWorkDate = #{joinworkdate,jdbcType=DATE},
+      </if>
+      <if test="enrolldate != null">
+        enrollDate = #{enrolldate,jdbcType=DATE},
+      </if>
+      <if test="entrydate != null">
+        entryDate = #{entrydate,jdbcType=DATE},
+      </if>
+      <if test="regulardate != null">
+        regularDate = #{regulardate,jdbcType=DATE},
+      </if>
+      <if test="filenum != null">
+        fileNum = #{filenum,jdbcType=INTEGER},
+      </if>
+      <if test="personnelnature != null">
+        personnelNature = #{personnelnature,jdbcType=VARCHAR},
+      </if>
+      <if test="worktype != null">
+        workType = #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="identitytype != null">
+        identityType = #{identitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null">
+        jobType = #{jobtype,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalcode != null">
+        hospitalCode = #{hospitalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="departcode != null">
+        departCode = #{departcode,jdbcType=VARCHAR},
+      </if>
+      <if test="logincodes != null">
+        loginCodes = #{logincodes,jdbcType=VARCHAR},
+      </if>
+      <if test="positioncode != null">
+        positionCode = #{positioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="positiondate != null">
+        positionDate = #{positiondate,jdbcType=DATE},
+      </if>
+      <if test="protitlecode != null">
+        proTitleCode = #{protitlecode,jdbcType=VARCHAR},
+      </if>
+      <if test="protitledate != null">
+        proTitleDate = #{protitledate,jdbcType=DATE},
+      </if>
+      <if test="workstate != null">
+        workState = #{workstate,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="nursetier != null">
+        nurseTier = #{nursetier,jdbcType=VARCHAR},
+      </if>
+      <if test="nursecertificate != null">
+        nurseCertificate = #{nursecertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="nurseagesubsidyshould != null">
+        nurseAgeSubsidyShould = #{nurseagesubsidyshould,jdbcType=DECIMAL},
+      </if>
+      <if test="nurseagesubsidyreal != null">
+        nurseAgeSubsidyReal = #{nurseagesubsidyreal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kias.model.Userinfo">
+    update userinfo
+    set loginName = #{loginname,jdbcType=VARCHAR},
+      preLoginName = #{preloginname,jdbcType=VARCHAR},
+      realName = #{realname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      cardNo = #{cardno,jdbcType=VARCHAR},
+      nativePlace = #{nativeplace,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      maritalStatus = #{maritalstatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      weChat = #{wechat,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      emergentContact = #{emergentcontact,jdbcType=VARCHAR},
+      emergentTelephone = #{emergenttelephone,jdbcType=VARCHAR},
+      politicalAffiliatio = #{politicalaffiliatio,jdbcType=VARCHAR},
+      firstEducationCode = #{firsteducationcode,jdbcType=VARCHAR},
+      firstGraduate = #{firstgraduate,jdbcType=VARCHAR},
+      secondEducationCode = #{secondeducationcode,jdbcType=VARCHAR},
+      secondGraduate = #{secondgraduate,jdbcType=VARCHAR},
+      topEducationCode = #{topeducationcode,jdbcType=VARCHAR},
+      topGraduate = #{topgraduate,jdbcType=VARCHAR},
+      readEducationCode = #{readeducationcode,jdbcType=VARCHAR},
+      readGraduate = #{readgraduate,jdbcType=VARCHAR},
+      finalEducationCode = #{finaleducationcode,jdbcType=VARCHAR},
+      finalGraduateDate = #{finalgraduatedate,jdbcType=DATE},
+      degree = #{degree,jdbcType=VARCHAR},
+      foreignLanguage = #{foreignlanguage,jdbcType=VARCHAR},
+      joinWorkDate = #{joinworkdate,jdbcType=DATE},
+      enrollDate = #{enrolldate,jdbcType=DATE},
+      entryDate = #{entrydate,jdbcType=DATE},
+      regularDate = #{regulardate,jdbcType=DATE},
+      fileNum = #{filenum,jdbcType=INTEGER},
+      personnelNature = #{personnelnature,jdbcType=VARCHAR},
+      workType = #{worktype,jdbcType=VARCHAR},
+      identityType = #{identitytype,jdbcType=VARCHAR},
+      jobType = #{jobtype,jdbcType=VARCHAR},
+      hospitalCode = #{hospitalcode,jdbcType=VARCHAR},
+      departCode = #{departcode,jdbcType=VARCHAR},
+      loginCodes = #{logincodes,jdbcType=VARCHAR},
+      positionCode = #{positioncode,jdbcType=VARCHAR},
+      positionDate = #{positiondate,jdbcType=DATE},
+      proTitleCode = #{protitlecode,jdbcType=VARCHAR},
+      proTitleDate = #{protitledate,jdbcType=DATE},
+      workState = #{workstate,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      nurseTier = #{nursetier,jdbcType=VARCHAR},
+      nurseCertificate = #{nursecertificate,jdbcType=VARCHAR},
+      nurseAgeSubsidyShould = #{nurseagesubsidyshould,jdbcType=DECIMAL},
+      nurseAgeSubsidyReal = #{nurseagesubsidyreal,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 通用查询方法 ：姓名是模糊查询-->
+  <select id="selectUserByParams" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    <where>
+      <if test="loginname != null"> AND
+        loginName = #{loginname,jdbcType=VARCHAR} 
+      </if>
+      <if test="preloginname != null"> AND
+        preLoginName = #{preloginname,jdbcType=VARCHAR} 
+      </if>
+      <if test="realname != null"> AND
+      	realName LIKE CONCAT(CONCAT('%', #{realname}), '%') 
+      </if>
+      <if test="sex != null"> AND
+        sex = #{sex,jdbcType=VARCHAR} 
+      </if>
+      <if test="nation != null"> AND
+        nation = #{nation,jdbcType=VARCHAR} 
+      </if>
+      <if test="birthday != null"> AND
+        birthday = #{birthday,jdbcType=DATE} 
+      </if>
+      <if test="cardno != null"> AND
+        cardNo = #{cardno,jdbcType=VARCHAR} 
+      </if>
+      <if test="nativeplace != null"> AND
+        nativePlace = #{nativeplace,jdbcType=VARCHAR} 
+      </if>
+      <if test="photo != null"> AND
+        photo = #{photo,jdbcType=VARCHAR} 
+      </if>
+      <if test="maritalstatus != null"> AND
+        maritalStatus = #{maritalstatus,jdbcType=VARCHAR} 
+      </if>
+      <if test="status != null"> AND
+        status = #{status,jdbcType=VARCHAR} 
+      </if>
+      <if test="createtime != null"> AND
+        createTime = #{createtime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="telephone != null"> AND
+        telephone = #{telephone,jdbcType=VARCHAR} 
+      </if>
+      <if test="wechat != null"> AND
+        weChat = #{wechat,jdbcType=VARCHAR} 
+      </if>
+      <if test="email != null"> AND
+        email = #{email,jdbcType=VARCHAR} 
+      </if>
+      <if test="address != null"> AND
+        address = #{address,jdbcType=VARCHAR} 
+      </if>
+      <if test="postcode != null"> AND
+        postcode = #{postcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="emergentcontact != null"> AND
+        emergentContact = #{emergentcontact,jdbcType=VARCHAR} 
+      </if>
+      <if test="emergenttelephone != null"> AND
+        emergentTelephone = #{emergenttelephone,jdbcType=VARCHAR} 
+      </if>
+      <if test="politicalaffiliatio != null"> AND
+        politicalAffiliatio = #{politicalaffiliatio,jdbcType=VARCHAR} 
+      </if>
+      <if test="firsteducationcode != null"> AND
+        firstEducationCode = #{firsteducationcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="firstgraduate != null"> AND
+        firstGraduate = #{firstgraduate,jdbcType=VARCHAR} 
+      </if>
+      <if test="secondeducationcode != null"> AND
+        secondEducationCode = #{secondeducationcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="secondgraduate != null"> AND
+        secondGraduate = #{secondgraduate,jdbcType=VARCHAR} 
+      </if>
+      <if test="topeducationcode != null"> AND
+        topEducationCode = #{topeducationcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="topgraduate != null"> AND
+        topGraduate = #{topgraduate,jdbcType=VARCHAR} 
+      </if>
+      <if test="readeducationcode != null"> AND
+        readEducationCode = #{readeducationcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="readgraduate != null"> AND
+        readGraduate = #{readgraduate,jdbcType=VARCHAR} 
+      </if>
+      <if test="finaleducationcode != null"> AND
+        finalEducationCode = #{finaleducationcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="finalgraduatedate != null"> AND
+        finalGraduateDate = #{finalgraduatedate,jdbcType=DATE} 
+      </if>
+      <if test="degree != null"> AND
+        degree = #{degree,jdbcType=VARCHAR} 
+      </if>
+      <if test="foreignlanguage != null"> AND
+        foreignLanguage = #{foreignlanguage,jdbcType=VARCHAR} 
+      </if>
+      <if test="joinworkdate != null"> AND
+        joinWorkDate = #{joinworkdate,jdbcType=DATE} 
+      </if>
+      <if test="enrolldate != null"> AND
+        enrollDate = #{enrolldate,jdbcType=DATE} 
+      </if>
+      <if test="entrydate != null"> AND
+        entryDate = #{entrydate,jdbcType=DATE} 
+      </if>
+      <if test="regulardate != null"> AND
+        regularDate = #{regulardate,jdbcType=DATE} 
+      </if>
+      <if test="filenum != null"> AND
+        fileNum = #{filenum,jdbcType=INTEGER} 
+      </if>
+      <if test="personnelnature != null"> AND
+        personnelNature = #{personnelnature,jdbcType=VARCHAR} 
+      </if>
+      <if test="worktype != null"> AND
+        workType = #{worktype,jdbcType=VARCHAR} 
+      </if>
+      <if test="identitytype != null"> AND
+        identityType = #{identitytype,jdbcType=VARCHAR} 
+      </if>
+      <if test="jobtype != null"> AND
+        jobType = #{jobtype,jdbcType=VARCHAR} 
+      </if>
+      <if test="hospitalcode != null"> AND
+        hospitalCode = #{hospitalcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="departcode != null"> AND
+        departCode = #{departcode,jdbcType=VARCHAR} 
+      </if>
+      <if test="logincodes != null"> AND
+        loginCodes = #{logincodes,jdbcType=VARCHAR} 
+      </if>
+      <if test="positioncode != null"> AND
+        positionCode = #{positioncode,jdbcType=VARCHAR} 
+      </if>
+      <if test="positiondate != null"> AND
+        positionDate = #{positiondate,jdbcType=DATE} 
+      </if>
+      <if test="protitlecode != null"> AND
+        proTitleCode = #{protitlecode,jdbcType=VARCHAR} 
+      </if>
+      <if test="protitledate != null"> AND
+        proTitleDate = #{protitledate,jdbcType=DATE} 
+      </if>
+      <if test="workstate != null"> AND
+        workState = #{workstate,jdbcType=VARCHAR} 
+      </if>
+      <if test="experience != null"> AND
+        experience = #{experience,jdbcType=VARCHAR} 
+      </if>
+      <if test="nursetier != null"> AND
+        nurseTier = #{nursetier,jdbcType=VARCHAR} 
+      </if>
+      <if test="nursecertificate != null"> AND
+        nurseCertificate = #{nursecertificate,jdbcType=VARCHAR} 
+      </if>
+      <if test="nurseagesubsidyshould != null"> AND
+        nurseAgeSubsidyShould = #{nurseagesubsidyshould,jdbcType=DECIMAL} 
+      </if>
+      <if test="nurseagesubsidyreal != null"> AND
+        nurseAgeSubsidyReal = #{nurseagesubsidyreal,jdbcType=DECIMAL} 
+      </if>    
+    </where>
+  </select>  
+</mapper>

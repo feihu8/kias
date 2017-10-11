@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kias.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.kias.model.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="roleCode" jdbcType="VARCHAR" property="rolecode" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="resource_codes" jdbcType="VARCHAR" property="resourceCodes" />
+    <result column="available" jdbcType="VARCHAR" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roleName, roleCode, description, resource_codes, available
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kias.model.Role">
+    insert into role (id, roleName, roleCode, 
+      description, resource_codes, available
+      )
+    values (#{id,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{resourceCodes,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kias.model.Role">
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rolename != null">
+        roleName,
+      </if>
+      <if test="rolecode != null">
+        roleCode,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="resourceCodes != null">
+        resource_codes,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCodes != null">
+        #{resourceCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kias.model.Role">
+    update role
+    <set>
+      <if test="rolename != null">
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        roleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceCodes != null">
+        resource_codes = #{resourceCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kias.model.Role">
+    update role
+    set roleName = #{rolename,jdbcType=VARCHAR},
+      roleCode = #{rolecode,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      resource_codes = #{resourceCodes,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 自己定义的查询 -->
+  <select id="selectRoleByConds" resultMap="BaseResultMap">
+  	 select 
+   		<include refid="Base_Column_List" />
+     from role
+     <where>
+      <if test="record.id != null "> AND
+        id = #{record.id,jdbcType=INTEGER}
+      </if>
+      <if test="record.rolename and record.rolename!=''"> AND 
+        roleName = #{record.rolename,jdbcType=VARCHAR}
+      </if>
+      <if test="record.rolecode and record.rolecode!=''"> AND
+        roleCode = #{record.rolecode,jdbcType=VARCHAR}
+      </if>
+      <if test="record.description and record.description!=''"> AND
+        description = #{record.description,jdbcType=VARCHAR}
+      </if>
+      <if test="record.resourceCodes and record.resourceCodes!=''"> AND
+        resource_codes = #{record.resourceCodes,jdbcType=VARCHAR}
+      </if>
+      <if test="record.available  and record.available!=''"> AND
+        available = #{record.available,jdbcType=VARCHAR}
+      </if>
+      <if test="conds != null and conds !=''">
+  		AND conds
+  	  </if>
+     </where>
+  	 <if test=" extra !=null and  extra !=''">
+    	extra
+    </if>
+  </select>
+  <select id="selectByParams" parameterType="com.kias.model.Role" resultMap="BaseResultMap">
+  	select 
+   		<include refid="Base_Column_List" />
+    from role
+    where 
+    <choose>
+    	<when test="available != null and available !=''">
+    	 available = #{available,jdbcType=VARCHAR}
+    	</when>
+    	<otherwise>
+    	 available ='1' 
+    	</otherwise>
+    </choose>
+      <if test="id != null and id !=0">
+         AND id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="rolename != null and rolename != ''">
+         AND roleName = #{rolename,jdbcType=VARCHAR} 
+      </if>
+      <if test="rolecode != null and rolecode != ''">
+         AND roleCode = #{rolecode,jdbcType=VARCHAR}
+      </if>
+      <if test="description != null and description !=''">
+         AND description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="resourceCodes != null and resourceCodes!=''">
+         AND resource_codes = #{resourceCodes,jdbcType=VARCHAR}
+      </if>
+    </select>
+    <!-- 根据角色查询所有记录 -->
+  	<select id="selectByRoles" parameterType="java.util.List" resultMap="BaseResultMap">
+    	select 
+	   		<include refid="Base_Column_List" />
+	    from role where 
+	    <choose>
+	    	<when test="available != null and available !=''">
+	    	 available = #{available,jdbcType=VARCHAR}
+	    	</when>
+	    	<otherwise>
+	    	 available ='1' 
+	    	</otherwise>
+	    </choose>
+	    <if test="roleCodes !=null">
+	    	AND roleCode in 
+		     <foreach collection="roleCodes" item="item" index="lot" open="(" close=")" separator=",">
+		     	#{item}
+		     </foreach>
+	    </if>
+    </select>
+     <!-- 逻辑删除 -->
+ 	<update id="delRoleByIds" parameterType="java.util.Map">
+ 		 update role Set available ='0'
+	 	<where>
+	      <if test="id != null"> AND
+	        id = #{id,jdbcType=INTEGER}
+	      </if>
+	      <if test="ids !=null">
+		      	AND id in 
+		      	<foreach collection="ids" item="item" index="idx" open="(" separator="," close=")">
+		      		#{item}
+		      	</foreach>
+		  </if>
+	    </where> 
+ 	</update>
+  <!--批量插入-->
+  <insert id="addBatchRole" parameterType="java.util.List" useGeneratedKeys="true">  
+    insert into role (id, roleName, roleCode, 
+      description, resource_codes, available)
+    VALUES  
+    <foreach collection="list" item="item" index="index" separator=",">
+       ( #{item.rolename}, #{item.rolecode},#{item.description}, #{item.resourceCodes}, #{item.available})  
+	</foreach>  
+  </insert>
+   <!-- 批量更新 -->
+   <update id="updateBatchRole" parameterType="java.util.List">  
+  	  <foreach collection="list" item="item" index="index" open="" close="" separator=";">   
+	      update role
+	      <trim prefix="set" suffixOverrides=",">  
+		      <if test="item.rolename != null">
+		        roleName = #{item.rolename,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.rolecode != null">
+		        roleCode = #{item.rolecode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.description != null"> 
+		        description = #{item.description,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.resourceCodes != null"> 
+		        resource_codes = #{item.resourceCodes,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.available != null"> ,
+		        available = #{item.available,jdbcType=VARCHAR},
+		      </if>
+	      </trim>
+	      <if test="item.id !=null">
+	      	where id = #{item.id,jdbcType=INTEGER}	      	
+	      </if>
+  	  </foreach>
+   </update>
+</mapper>

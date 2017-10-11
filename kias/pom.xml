@@ -1,0 +1,336 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>kias</groupId>
+  <artifactId>kias</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>kias</name>
+  <description/>
+  <properties>
+    <webVersion>3.0</webVersion>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   	<!-- spring版本号 -->
+	<spring.version>4.3.8.RELEASE</spring.version>
+	<!-- mybatis版本号 -->
+	<mybatis.version>3.4.4</mybatis.version>
+	<!-- slf4j日志文件管理包版本 -->
+	<slf4j.version>1.7.25</slf4j.version>
+	<!-- logback 日志管理 -->
+	<log4j2.version>2.8.2</log4j2.version>
+	<!-- mysql 连接驱动 -->
+	<mysql-con>5.1.39</mysql-con>
+	<!-- shiro 权限管理版本-->
+	<shiro.ver>1.3.2</shiro.ver>
+	<!-- json转换 -->
+	<jackson.ver>2.8.9</jackson.ver>
+  </properties>
+  <dependencies>
+    <dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- spring 全部包 start -->
+   <!-- spring核心包 Core组件作为Spring的核心组件，他其中包含了很多的关键类，其中一个重要组成部分就是定义了资源的访问方式。--> 
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<!-- spring对web的支持 包含Web应用开发时，用到Spring框架时所需的核心类，包括自动载入WebApplicationContext特性的类、文件上传的支持类、Filter类和大量工具辅助类。 -->  
+    <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-web</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency>
+     <!-- spring对ORM映射的支持 Spring对于object/xml映射的支持，可以让JAVA与XML之间来回切换    
+     <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-oxm</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency>  
+     -->   
+     <!-- spring事务管理支持 为JDBC、JDO、JPA等提供的一致的声明式和编程式事务管理 -->   
+     <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-tx</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency>
+     <!-- spring对JDBC的支持 对JDBC 的简单封装 -->  
+     <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-jdbc</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency> 
+     <!-- spring对MVC框架的支持 包含国际化、标签、Theme、视图展现的FreeMarker、JasperReports、Tiles、Velocity、XSLT相关类 --> 
+	 <dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>${spring.version}</version>
+	 </dependency>
+     <!-- spring切面支持 -->  
+     <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-aop</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency>
+     <!-- 在基础IOC功能上提供扩展服务，此外还提供许多企业级服务的支持，有邮件服务、任务调度、JNDI定位，EJB集成、远程访问、缓存以及多种视图层框架的支持-->  
+     <dependency>  
+          <groupId>org.springframework</groupId>  
+          <artifactId>spring-context</artifactId>  
+          <version>${spring.version}</version>  
+      </dependency>  
+     <!-- spring上下文支持 Spring context的扩展支持，用于MVC方面 -->     
+     <dependency>  
+          <groupId>org.springframework</groupId>  
+          <artifactId>spring-context-support</artifactId>  
+          <version>${spring.version}</version>  
+     </dependency>
+     <!-- spring测试支持 -->  
+     <dependency>  
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-test</artifactId>  
+         <version>${spring.version}</version>  
+     </dependency>
+     
+<!-- spring 包 end -->
+	<!-- 进行aop操作除了导入基本的jar包 -->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.8.10</version>
+	</dependency>
+	<!-- mybatis框架包 start -->  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis</artifactId>  
+        <version>${mybatis.version}</version>  
+    </dependency> 
+    <dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>1.3.1</version>
+	</dependency>
+	<!-- mybatis框架包 end -->
+	<!-- 加入ehcache -->
+	<dependency>
+	    <groupId>net.sf.ehcache</groupId>
+	    <artifactId>ehcache-core</artifactId>
+	    <version>2.6.11</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-ehcache</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+	    <artifactId>ehcache-spring-annotations</artifactId>
+	    <version>1.2.0</version>
+	</dependency>
+    <!-- 数据库驱动 -->  
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>${mysql-con}</version>
+	</dependency>
+	<!-- 数据库连接池 -->	
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.5.2</version>
+	</dependency>
+    <!-- servlet -->  
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>3.0-alpha-1</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.2</version>
+		<scope>provided</scope>
+	</dependency>  
+	<!-- 日志管理 log4j2 -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-log4j12</artifactId>
+	    <version>${slf4j.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>${log4j2.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>${log4j2.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-web</artifactId>
+	    <version>${log4j2.version}</version>
+	</dependency>
+	<!-- 是用来把Spring源代码中大量使用到的commons-logging替换成slf4j，只有在添加了这个依赖之后才能看到Spring框架本身打印的日志，否则只能看到开发者自己打印的日志 -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>jcl-over-slf4j</artifactId>
+	    <version>1.7.25</version>
+	</dependency> 
+	<!-- log END -->
+	<!-- 加入shiro权限管理 -->
+	<dependency>  
+        <groupId>org.apache.shiro</groupId>  
+        <artifactId>shiro-core</artifactId>  
+        <version>${shiro.ver}</version>  
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-ehcache</artifactId>
+        <version>${shiro.ver}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-web</artifactId>
+        <version>${shiro.ver}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>${shiro.ver}</version>
+    </dependency>
+	<!-- shiro  end -->
+ <!-- 上传组件包 start -->  
+     <dependency>  
+         <groupId>commons-fileupload</groupId>  
+         <artifactId>commons-fileupload</artifactId>  
+         <version>1.3.2</version>  
+     </dependency>  
+     <dependency>  
+         <groupId>commons-io</groupId>  
+         <artifactId>commons-io</artifactId>  
+         <version>2.5</version>  
+     </dependency>  
+     <dependency>  
+         <groupId>commons-codec</groupId>  
+         <artifactId>commons-codec</artifactId>  
+         <version>1.10</version>  
+     </dependency>
+     <!-- json转换 -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>${jackson.ver}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>${jackson.ver}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-annotations</artifactId>
+	    <version>${jackson.ver}</version>
+	</dependency>
+	 <dependency>
+         <groupId>net.sf.json-lib</groupId>
+         <artifactId>json-lib</artifactId>
+         <version>2.4</version>
+         <classifier>jdk15</classifier>
+     </dependency>
+	<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>
+	    <version>5.0.3</version>
+	</dependency>
+     <!-- 以下是多余的redis -->
+      <!-- Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+<!-- Spring Data Redis -->
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-redis</artifactId>
+    <version>1.8.6.RELEASE</version>
+</dependency>
+<!-- Spring Session -->
+<dependency>
+    <groupId>org.springframework.session</groupId>
+    <artifactId>spring-session</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+<!-- Apache Commons Pool -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+    <version>2.4.2</version>
+</dependency>
+        
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <!-- tomcat7 部署 -->
+	  <plugin> 
+			<groupId>org.apache.tomcat.maven</groupId> 
+			<artifactId>tomcat7-maven-plugin</artifactId> 
+			<version>2.2</version> 
+			<configuration> 
+			<url>http://localhost:8099/manager/text</url> <!-- tomcat管理路径 -->
+			<server>tomcat7</server> <!-- 与settings.xml文件中Server的id相同 -->
+			<username>hezy</username>
+			<password>hzy789</password>  
+			<path>/kias</path> <!--  应用的部署位置 -->
+			</configuration> 
+	    </plugin>
+       <!--generator-mybatis插件-->
+ 			<plugin>  
+                <groupId>org.mybatis.generator</groupId>  
+                <artifactId>mybatis-generator-maven-plugin</artifactId>  
+                <version>1.3.5</version>  
+                <configuration>  
+                    <configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>  
+                    <overwrite>true</overwrite>  
+                </configuration>  
+                <dependencies>  
+                    <dependency>  
+                        <groupId>mysql</groupId>  
+                        <artifactId>mysql-connector-java</artifactId>  
+                        <version>${mysql-con}</version>  
+                    </dependency>  
+                </dependencies>  
+            </plugin>
+    </plugins>
+  </build>
+</project>

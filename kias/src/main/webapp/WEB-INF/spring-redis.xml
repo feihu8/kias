@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="redisHttpSessionConfiguration"  
+         class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">  
+       <property name="maxInactiveIntervalInSeconds" value="1800"/>  
+   </bean>  
+    <!-- redis连接池 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+    	<property name="maxTotal" value="${cache.redis.maxActive}"/>
+        <property name="maxIdle" value="${cache.redis.maxIdle}"/>
+        <property name="maxWaitMillis" value="${cache.redis.maxWait}"/>
+    </bean>
+
+    <!-- redis连接工厂 -->
+    <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="usePool" value="true"/>
+        <property name="hostName" value="${cache.redis.host}"/>
+        <property name="port" value="${cache.redis.port}"/>
+        <property name="password" value="${cache.redis.password}"/>
+        <property name="timeout" value="${cache.redis.timeout}"/>
+        <property name="database" value="${cache.redis.db}"/>
+        <property name="poolConfig" ref="jedisPoolConfig" />
+    </bean>
+     <bean id="jedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">  
+        <property name="connectionFactory" ref="redisConnectionFactory"></property>  
+        <property name="keySerializer">  
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>  
+        </property>  
+        <property name="valueSerializer">  
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>  
+        </property>  
+    </bean>
+</beans>

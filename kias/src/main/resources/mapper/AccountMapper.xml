@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kias.dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.kias.model.Account">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="accountName" jdbcType="VARCHAR" property="accountname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="role_codes" jdbcType="VARCHAR" property="roleCodes" />
+    <result column="cardNo" jdbcType="VARCHAR" property="cardno" />
+    <result column="realName" jdbcType="VARCHAR" property="realname" />
+    <result column="locked" jdbcType="VARCHAR" property="locked" />
+    <result column="online" jdbcType="VARCHAR" property="online" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="delFlag" jdbcType="VARCHAR" property="delflag" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, accountName, password, salt, role_codes, cardNo, realName, locked, online, create_date, 
+    delFlag, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kias.model.Account">
+    insert into account (id, accountName, password, 
+      salt, role_codes, cardNo, 
+      realName, locked, online, 
+      create_date, delFlag, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{accountname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{roleCodes,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{locked,jdbcType=VARCHAR}, #{online,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{delflag,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kias.model.Account">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accountname != null">
+        accountName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="roleCodes != null">
+        role_codes,
+      </if>
+      <if test="cardno != null">
+        cardNo,
+      </if>
+      <if test="realname != null">
+        realName,
+      </if>
+      <if test="locked != null">
+        locked,
+      </if>
+      <if test="online != null">
+        online,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountname != null">
+        #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCodes != null">
+        #{roleCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kias.model.Account">
+    update account
+    <set>
+      <if test="accountname != null">
+        accountName = #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCodes != null">
+        role_codes = #{roleCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        cardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        online = #{online,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kias.model.Account">
+    update account
+    set accountName = #{accountname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      role_codes = #{roleCodes,jdbcType=VARCHAR},
+      cardNo = #{cardno,jdbcType=VARCHAR},
+      realName = #{realname,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=VARCHAR},
+      online = #{online,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 通用的查询 -->
+  <select id="selectByParams" parameterType="com.kias.model.Account" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where delFlag='1'
+    <if test="accountname != null and accountname != ''"> 
+    	 AND accountName = #{accountname,jdbcType=VARCHAR} 
+    </if>
+    <if test="password != null and password != ''">
+    	 AND password = #{password,jdbcType=VARCHAR}
+    </if>
+    <if test="salt != null and salt != ''">
+       salt = #{salt,jdbcType=VARCHAR},
+     </if>
+     <if test="roleCodes != null and roleCodes != ''">
+       role_codes = #{roleCodes,jdbcType=VARCHAR},
+     </if>
+     <if test="cardno != null and cardno != ''">
+       cardNo = #{cardno,jdbcType=VARCHAR},
+     </if>
+     <if test="realname != null and realname != ''">
+       realName = #{realname,jdbcType=VARCHAR},
+     </if>
+     <if test="locked != null and locked != ''">
+       locked = #{locked,jdbcType=VARCHAR},
+     </if>
+     <if test="online != null and online != ''">
+       online = #{online,jdbcType=VARCHAR},
+     </if>
+     <if test="createDate != null and createDate != ''">
+       create_date = #{createDate,jdbcType=TIMESTAMP},
+     </if>
+     <if test="remarks != null and remarks != ''">
+       remarks = #{remarks,jdbcType=VARCHAR},
+     </if>
+  </select>
+</mapper>

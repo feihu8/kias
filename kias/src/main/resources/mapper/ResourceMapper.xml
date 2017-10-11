@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kias.dao.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.kias.model.Resource">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="resourceName" jdbcType="VARCHAR" property="resourcename" />
+    <result column="resourceCode" jdbcType="VARCHAR" property="resourcecode" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="iconCls" jdbcType="VARCHAR" property="iconcls" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="leaf" jdbcType="VARCHAR" property="leaf" />
+    <result column="available" jdbcType="VARCHAR" property="available" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, resourceName, resourceCode, url, type, iconCls, priority, parent_code, parent_ids, 
+    permission, leaf, available, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kias.model.Resource">
+    insert into resource (id, resourceName, resourceCode, 
+      url, type, iconCls, 
+      priority, parent_code, parent_ids, 
+      permission, leaf, available, 
+      remarks)
+    values (#{id,jdbcType=INTEGER}, #{resourcename,jdbcType=VARCHAR}, #{resourcecode,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=INTEGER}, #{parentCode,jdbcType=VARCHAR}, #{parentIds,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=VARCHAR}, #{leaf,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kias.model.Resource">
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="resourcename != null">
+        resourceName,
+      </if>
+      <if test="resourcecode != null">
+        resourceCode,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="iconcls != null">
+        iconCls,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="parentIds != null">
+        parent_ids,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="leaf != null">
+        leaf,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="resourcename != null">
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcecode != null">
+        #{resourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null">
+        #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null">
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null">
+        #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kias.model.Resource">
+    update resource
+    <set>
+      <if test="resourcename != null">
+        resourceName = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcecode != null">
+        resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null">
+        iconCls = #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null">
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null">
+        leaf = #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kias.model.Resource">
+    update resource
+    set resourceName = #{resourcename,jdbcType=VARCHAR},
+      resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      iconCls = #{iconcls,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=INTEGER},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      leaf = #{leaf,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 通用查询 -->
+  <select id="selectResourceByConds" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from resource
+    <where>
+      <if test="record.id != null "> AND
+        id = #{record.id,jdbcType=INTEGER}
+      </if>
+      <if test="record.resourcename != null and record.resourcename!=''"> AND 
+        resourceName = #{record.resourcename,jdbcType=VARCHAR}
+      </if>
+      <if test="record.resourcecode != null and record.resourcecode!=''"> AND 
+        resourceCode = #{record.resourcecode,jdbcType=VARCHAR}
+      </if>
+      <if test="record.url != null and record.url!=''"> AND 
+        url = #{record.url,jdbcType=VARCHAR}
+      </if>
+      <if test="record.type != null and record.type!=''"> AND 
+        type = #{record.type,jdbcType=VARCHAR}
+      </if>
+      <if test="record.iconcls != null and record.iconcls!=''"> AND 
+        iconCls = #{record.iconcls,jdbcType=VARCHAR}
+      </if>
+      <if test="record.priority != null and record.priority!=''"> AND 
+        priority = #{record.priority,jdbcType=INTEGER}
+      </if>
+      <if test="record.parentCode != null and record.parentCode!=''"> AND 
+        parent_code = #{record.parentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="record.parentIds != null and record.parentIds!=''"> AND 
+        parent_ids = #{record.parentIds,jdbcType=VARCHAR}
+      </if>
+      <if test="record.permission != null and record.permission!=''"> AND 
+        permission = #{record.permission,jdbcType=VARCHAR}
+      </if>
+      <if test="record.leaf != null and record.leaf!=''"> AND 
+        leaf = #{record.leaf,jdbcType=VARCHAR}
+      </if>
+      <if test="record.available != null and record.available!=''"> AND 
+        available = #{record.available,jdbcType=VARCHAR}
+      </if>
+      <if test="record.remarks != null and record.remarks!=''"> AND 
+        remarks = #{record.remarks,jdbcType=VARCHAR}
+      </if>
+       <if test="conds != null and conds !=''">
+  		AND conds
+  	  </if>
+    </where>
+    <if test=" extra !=null and  extra !=''">
+    	extra
+    </if>
+      	order by priority
+  </select>
+  <!-- 根据资源代码查询资源 -->
+ <select id= "selectByResCodes" resultMap="BaseResultMap">
+ 	 select 
+    	<include refid="Base_Column_List" />
+     from resource
+     where 
+     <choose>
+     	<when test="available != null and available !=''">
+     		available = #{available,jdbcType=VARCHAR} 
+     	</when>
+     	<otherwise>
+     		available = '1' 
+     	</otherwise>
+     </choose>
+     <if test="parentCode !=null">
+     	AND parent_code = #{parentCode,jdbcType=VARCHAR}      	
+     </if>
+     <if test="type !=null">
+		AND type = #{type,jdbcType=VARCHAR}     	
+     </if>
+     <if test="resCodes !=null">
+    	AND resourceCode in 
+	    <foreach collection="resCodes" item="item" index="lot" open="(" close=")" separator=",">
+	     	#{item}
+	    </foreach>
+     </if> 
+ </select>
+ <!-- 逻辑删除 -->
+ <update id="delResourceByIds" parameterType="java.util.Map">
+ 	 update resource SET  available='0'
+ 	 <where>
+      <if test="id != null"> AND
+        id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="ids !=null">
+	      	AND id in 
+	      	<foreach collection="ids" item="item" index="idx" open="(" separator="," close=")">
+	      		#{item}
+	      	</foreach>
+	  </if>
+    </where>
+ </update>
+  <!--批量插入-->
+  <insert id="addBatchResource" parameterType="java.util.List" useGeneratedKeys="true">  
+     insert into resource (resourceName, resourceCode,url, type, iconCls, 
+      priority, parent_code, parent_ids,permission, leaf, available,remarks)
+    VALUES  
+    <foreach collection="list" item="item" index="index" separator=",">  
+	   ( #{item.resourcename}, #{item.resourcecode},#{item.url}, #{item.type},#{item.iconcls},
+	   #{item.priority},#{item.parentCode},#{item.parentIds},#{item.permission},#{item.leaf},
+	   #{item.available},#{item.remarks})
+	</foreach>  
+  </insert>
+  <!-- 批量更新 -->
+   <update id="updateBatchResource" parameterType="java.util.List">  
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">   
+	      update resource
+	      <set>
+		      <if test="item.resourcename != null">
+		        resourceName = #{item.resourcename,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.resourcecode != null">
+		        resourceCode = #{item.resourcecode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.url != null">
+		        url = #{item.url,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.type != null">
+		        type = #{item.type,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.iconcls != null">
+		        iconCls = #{item.iconcls,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.priority != null">
+		        priority = #{item.priority,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.parentCode != null">
+		        parent_code = #{item.parentCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.parentIds != null">
+		        parent_ids = #{item.parentIds,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.permission != null">
+		        permission = #{item.permission,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.leaf != null">
+		        leaf = #{item.leaf,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.available != null">
+		        available = #{item.available,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.remarks != null">
+		        remarks = #{item.remarks,jdbcType=VARCHAR},
+		      </if>
+	      </set>
+	      <if test="item.id !=null">
+	      	where id = #{item.id,jdbcType=INTEGER}	      	
+	      </if>
+        </foreach>
+   </update>
+</mapper>

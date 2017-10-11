@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kias.dao.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.kias.model.Organization">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orgName" jdbcType="VARCHAR" property="orgname" />
+    <result column="orgCode" jdbcType="VARCHAR" property="orgcode" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="division" jdbcType="VARCHAR" property="division" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="parent_codes" jdbcType="VARCHAR" property="parentCodes" />
+    <result column="jp" jdbcType="VARCHAR" property="jp" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="available" jdbcType="VARCHAR" property="available" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, orgName, orgCode, priority, type, division, parent_code, parent_codes, jp, phone, 
+    address, introduction, available, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kias.model.Organization">
+    insert into organization (id, orgName, orgCode, 
+      priority, type, division, 
+      parent_code, parent_codes, jp, 
+      phone, address, introduction, 
+      available, remarks)
+    values (#{id,jdbcType=INTEGER}, #{orgname,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{division,jdbcType=VARCHAR}, 
+      #{parentCode,jdbcType=VARCHAR}, #{parentCodes,jdbcType=VARCHAR}, #{jp,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{available,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kias.model.Organization">
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orgname != null">
+        orgName,
+      </if>
+      <if test="orgcode != null">
+        orgCode,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="division != null">
+        division,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="parentCodes != null">
+        parent_codes,
+      </if>
+      <if test="jp != null">
+        jp,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orgname != null">
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="division != null">
+        #{division,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCodes != null">
+        #{parentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="jp != null">
+        #{jp,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kias.model.Organization">
+    update organization
+    <set>
+      <if test="orgname != null">
+        orgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        orgCode = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="division != null">
+        division = #{division,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCodes != null">
+        parent_codes = #{parentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="jp != null">
+        jp = #{jp,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kias.model.Organization">
+    update organization
+    set orgName = #{orgname,jdbcType=VARCHAR},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      division = #{division,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      parent_codes = #{parentCodes,jdbcType=VARCHAR},
+      jp = #{jp,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 以下是自定义的 -->
+  <!-- 通用的查询 -->
+  <select id="selectByMap" resultMap="BaseResultMap">
+	  select 
+	    <include refid="Base_Column_List" />
+	  from organization
+	  <where>
+	  	 <if test="id != null">
+	  	 	AND id = #{id,jdbcType=INTEGER}
+	  	 </if>
+	     <if test="orgname != null  and orgname != ''">
+	        AND orgName like '%${orgname}%'
+	      </if>
+	      <if test="departCode !=null">
+	      	AND orgCode in 
+	      	<foreach collection="departCode" item="item" index="idx" open="(" separator="," close=")">
+	      		#{item}
+	      	</foreach>
+	      </if>
+	      <if test="orgcode != null and orgcode != ''">
+	        AND orgCode = #{orgcode,jdbcType=VARCHAR}
+	      </if>
+	      <if test="priority != null and priority != ''">
+	        AND priority = #{priority,jdbcType=INTEGER}
+	      </if>
+	      <if test="type != null and type != ''">
+	        AND type = #{type,jdbcType=VARCHAR}
+	      </if>
+	      <if test="division != null and division != ''">
+	        AND division = #{division,jdbcType=VARCHAR}
+	      </if>
+	      <if test="parentCode != null and parentCode != ''">
+	        AND parent_code = #{parentCode,jdbcType=VARCHAR}
+	      </if>
+	      <if test="parentCodes != null and parentCodes != ''">
+	        AND parent_codes = #{parentCodes,jdbcType=VARCHAR}
+	      </if>
+	      <if test="jp != null and jp != ''">
+	        AND jp = #{jp,jdbcType=VARCHAR}
+	      </if>
+	      <if test="phone != null and phone != ''">
+	        AND phone = #{phone,jdbcType=VARCHAR}
+	      </if>
+	      <if test="address != null and address != ''">
+	        AND address = #{address,jdbcType=VARCHAR}
+	      </if>
+	      <if test="introduction != null and introduction != ''">
+	        AND introduction = #{introduction,jdbcType=VARCHAR}
+	      </if>
+	      <if test="available != null and available != ''">
+	        AND available = #{available,jdbcType=VARCHAR}
+	      </if>
+	      <if test="remarks != null and remarks != ''">
+	        AND remarks = #{remarks,jdbcType=VARCHAR}
+	      </if>
+	  </where>
+  </select>
+</mapper>

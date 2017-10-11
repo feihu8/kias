@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<Configuration status="INFO" monitorInterval="1800">  
+	<properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="FILE_NAME">malone</property>
+    </properties>
+    <appenders>  
+        <Console name="consolePrint" target="SYSTEM_OUT">  
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />  
+        </Console> 
+        <RollingRandomAccessFile name="running-log"
+            fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                pattern="[%-5p] %d %c - %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="60 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile> 
+    </appenders>  
+  
+    <loggers>  
+        <!-- 将业务dao接口填写进去,并用控制台输出即可 -->  
+        <logger name="com.kias.dao" level="TRACE" additivity="false">  
+            <appender-ref ref="consolePrint"/>  
+        </logger>  
+        <root level="info">  
+            <appender-ref ref="consolePrint" />  
+            <appender-ref ref="running-log" />
+        </root>  
+    </loggers>  
+</Configuration>
